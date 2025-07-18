@@ -8,7 +8,7 @@
 </head>
 <body>
   <header>
-    <h1>DIGI</h1>
+    <h1>CANDAN SWAIN</h1>
     <input type="text" id="searchBox" placeholder="Search products..." />
   </header>
   <main id="product-list"></main>
