@@ -1,10 +1,138 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>Welcome</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Online Platform</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
+  <style>
+    html {
+      scroll-behavior: smooth;
+    }
+  </style>
 </head>
-<body style="text-align:center; margin-top:100px;">
-  <h1>Welcome to the Auth System</h1>
-  <p><a href="login.html">Login</a> | <a href="signup.html">Sign Up</a></p>
+<body class="bg-white text-gray-800">
+
+  <!-- ✅ Navbar -->
+  <header class="bg-white shadow-md fixed top-0 left-0 right-0 z-50">
+    <div class="max-w-7xl mx-auto px-4 py-4 flex items-center justify-between">
+      <h1 class="text-2xl font-bold text-indigo-600">MyBusiness</h1>
+      <nav class="hidden md:flex space-x-6">
+        <a href="#home" class="text-gray-700 hover:text-indigo-600 font-medium">Home</a>
+        <a href="#features" class="text-gray-700 hover:text-indigo-600 font-medium">Features</a>
+        <a href="#auth" class="text-gray-700 hover:text-indigo-600 font-medium">Login / Signup</a>
+      </nav>
+      <button class="md:hidden block text-gray-700" id="menuToggle">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none"
+             viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M4 6h16M4 12h16M4 18h16" />
+        </svg>
+      </button>
+    </div>
+    <div id="mobileMenu" class="md:hidden hidden px-4 pb-4 space-y-2">
+      <a href="#home" class="block text-gray-700 hover:text-indigo-600">Home</a>
+      <a href="#features" class="block text-gray-700 hover:text-indigo-600">Features</a>
+      <a href="#auth" class="block text-gray-700 hover:text-indigo-600">Login / Signup</a>
+    </div>
+  </header>
+
+  <!-- ✅ Hero Section -->
+  <section id="home" class="pt-24 min-h-screen bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-600 text-white flex items-center justify-center">
+    <div class="text-center px-6" data-aos="fade-up">
+      <h1 class="text-5xl md:text-6xl font-extrabold mb-4">Welcome to Our Online Platform</h1>
+      <p class="text-lg md:text-xl mb-6">Your one-stop solution for digital services & tools.</p>
+      <a href="#auth" class="bg-white text-indigo-700 hover:text-white hover:bg-indigo-800 px-8 py-3 rounded-full font-bold transition-all duration-300 inline-block">Login / Signup</a>
+    </div>
+  </section>
+
+  <!-- ✅ Features Section -->
+  <section id="features" class="py-20 bg-gray-100 text-center">
+    <h2 class="text-3xl font-bold mb-12" data-aos="fade-up">What We Offer</h2>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8 px-6 max-w-6xl mx-auto">
+      <div class="bg-white p-6 rounded-2xl shadow-lg" data-aos="fade-up" data-aos-delay="100">
+        <h3 class="text-xl font-semibold mb-3">Smart Dashboard</h3>
+        <p class="text-gray-600">Manage data, view analytics, and stay in control.</p>
+      </div>
+      <div class="bg-white p-6 rounded-2xl shadow-lg" data-aos="fade-up" data-aos-delay="200">
+        <h3 class="text-xl font-semibold mb-3">Secure Access</h3>
+        <p class="text-gray-600">Encrypted login and cloud security.</p>
+      </div>
+      <div class="bg-white p-6 rounded-2xl shadow-lg" data-aos="fade-up" data-aos-delay="300">
+        <h3 class="text-xl font-semibold mb-3">24/7 Support</h3>
+        <p class="text-gray-600">We're here for you anytime.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ✅ Login / Signup Forms -->
+  <section id="auth" class="py-20 bg-gray-50 flex justify-center items-center px-4">
+    <div class="bg-white shadow-2xl rounded-3xl overflow-hidden w-full max-w-4xl grid grid-cols-1 md:grid-cols-2 transition-all duration-500" data-aos="zoom-in">
+
+      <!-- Left Panel -->
+      <div class="flex flex-col justify-center items-center p-10 text-center bg-gray-100">
+        <h2 class="text-3xl font-bold mb-4">Welcome Back!</h2>
+        <p class="mb-6 text-gray-600">Login or create an account below.</p>
+        <div>
+          <button onclick="showLogin()" class="bg-indigo-600 text-white px-6 py-2 rounded-full font-semibold hover:bg-indigo-700 transition">Login</button>
+          <button onclick="showSignup()" class="bg-pink-600 text-white px-6 py-2 rounded-full font-semibold hover:bg-pink-700 transition ml-4">Signup</button>
+        </div>
+      </div>
+
+      <!-- Right Panel -->
+      <div class="p-8" id="formContainer">
+        <!-- Login Form -->
+        <div id="loginForm">
+          <h2 class="text-2xl font-bold mb-6 text-indigo-600">Login</h2>
+          <form action="login.php" method="POST">
+            <input type="email" name="email" placeholder="Email" required class="w-full p-3 mb-4 border border-gray-300 rounded-xl focus:ring-indigo-400"/>
+            <input type="password" name="password" placeholder="Password" required class="w-full p-3 mb-4 border border-gray-300 rounded-xl focus:ring-indigo-400"/>
+            <button type="submit" class="w-full bg-indigo-600 text-white py-2 rounded-xl hover:bg-indigo-700 transition">Login</button>
+          </form>
+        </div>
+
+        <!-- Signup Form -->
+        <div id="signupForm" class="hidden">
+          <h2 class="text-2xl font-bold mb-6 text-pink-600">Sign Up</h2>
+          <form action="signup.php" method="POST">
+            <input type="text" name="name" placeholder="Full Name" required class="w-full p-3 mb-4 border border-gray-300 rounded-xl focus:ring-pink-400"/>
+            <input type="email" name="email" placeholder="Email" required class="w-full p-3 mb-4 border border-gray-300 rounded-xl focus:ring-pink-400"/>
+            <input type="password" name="password" placeholder="Password" required class="w-full p-3 mb-4 border border-gray-300 rounded-xl focus:ring-pink-400"/>
+            <button type="submit" class="w-full bg-pink-600 text-white py-2 rounded-xl hover:bg-pink-700 transition">Sign Up</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ✅ Footer -->
+  <footer class="bg-gray-900 text-white text-center py-6">
+    <p>&copy; 2025 MyBusiness. All rights reserved.</p>
+  </footer>
+
+  <!-- ✅ Scripts -->
+  <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+  <script>
+    AOS.init();
+
+    const menuToggle = document.getElementById("menuToggle");
+    const mobileMenu = document.getElementById("mobileMenu");
+
+    menuToggle.addEventListener("click", () => {
+      mobileMenu.classList.toggle("hidden");
+    });
+
+    function showLogin() {
+      document.getElementById('loginForm').classList.remove('hidden');
+      document.getElementById('signupForm').classList.add('hidden');
+    }
+
+    function showSignup() {
+      document.getElementById('signupForm').classList.remove('hidden');
+      document.getElementById('loginForm').classList.add('hidden');
+    }
+  </script>
+
 </body>
 </html>
